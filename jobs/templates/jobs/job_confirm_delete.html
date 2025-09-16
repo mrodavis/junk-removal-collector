@@ -1,0 +1,6 @@
+<h1>Delete Job</h1>
+<p>Are you sure you want to delete "{{ object.description }}"?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Confirm</button>
+</form>

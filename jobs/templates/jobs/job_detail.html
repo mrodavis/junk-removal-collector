@@ -1,0 +1,8 @@
+<h1>{{ object.description }}</h1>
+<p><strong>Address:</strong> {{ object.address }}</p>
+<p><strong>Date:</strong> {{ object.date }}</p>
+<p><strong>Status:</strong> {{ object.status }}</p>
+<p><strong>Customer:</strong> {{ object.customer.name }}</p>
+
+<a href="{% url 'job_update' object.pk %}">Edit</a> |
+<a href="{% url 'job_delete' object.pk %}">Delete</a>

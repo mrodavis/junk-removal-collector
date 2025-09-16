@@ -1,0 +1,8 @@
+<h1>All Haulers</h1>
+<ul>
+  {% for hauler in haulers %}
+    <li>
+      <a href="{% url 'hauler_detail' hauler.pk %}">{{ hauler.name }}</a>
+    </li>
+  {% endfor %}
+</ul>
