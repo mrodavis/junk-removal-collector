@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>{{ object.description }}</h1>
 <p><strong>Address:</strong> {{ object.address }}</p>
 <p><strong>Date:</strong> {{ object.date }}</p>
@@ -6,3 +9,16 @@
 
 <a href="{% url 'job_update' object.pk %}">Edit</a> |
 <a href="{% url 'job_delete' object.pk %}">Delete</a>
+
+<h2>Disposal Details</h2>
+{% if object.disposal_details %}
+  <p>Dump Site: {{ object.disposal_details.dump_site }}</p>
+  <p>Fee: ${{ object.disposal_details.fee }}</p>
+  <p>Notes: {{ object.disposal_details.notes }}</p>
+  <a href="{% url 'disposal_update' object.disposal_details.pk %}">Edit</a> |
+  <a href="{% url 'disposal_delete' object.disposal_details.pk %}">Delete</a>
+{% else %}
+  <p>No disposal details yet.</p>
+  <a href="{% url 'disposal_create' object.pk %}">Add Disposal Details</a>
+{% endif %}
+{% endblock %}

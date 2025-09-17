@@ -1,6 +1,13 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views import generic
 from django.urls import reverse_lazy
-from .models import Job, Hauler
+from .models import Job, Hauler, Equipment, DisposalDetails
+
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"
 
 # JOB VIEWS
 class JobListView(ListView):
@@ -39,3 +46,63 @@ class HaulerListView(ListView):
 class HaulerDetailView(DetailView):
     model = Hauler
     template_name = "jobs/hauler_detail.html"
+
+
+# EQUIPMENT VIEWS
+class EquipmentListView(ListView):
+    model = Equipment
+    template_name = "jobs/equipment_list.html"
+    context_object_name = "equipment"
+
+class EquipmentDetailView(DetailView):
+    model = Equipment
+    template_name = "jobs/equipment_detail.html"
+
+class EquipmentCreateView(CreateView):
+    model = Equipment
+    template_name = "jobs/equipment_form.html"
+    fields = ["type", "size", "availability", "jobs"]
+    success_url = reverse_lazy("equipment_list")
+
+class EquipmentUpdateView(UpdateView):
+    model = Equipment
+    template_name = "jobs/equipment_form.html"
+    fields = ["type", "size", "availability", "jobs"]
+    success_url = reverse_lazy("equipment_list")
+
+class EquipmentDeleteView(DeleteView):
+    model = Equipment
+    template_name = "jobs/equipment_confirm_delete.html"
+    success_url = reverse_lazy("equipment_list")
+
+
+# DISPOSALDETAILS VIEWS
+class DisposalCreateView(CreateView):
+    model = DisposalDetails
+    template_name = "jobs/disposal_form.html"
+    fields = ["dump_site", "fee", "notes"]
+
+    def form_valid(self, form):
+        job = Job.objects.get(pk=self.kwargs["pk"])
+        form.instance.job = job
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy("job_detail", kwargs={"pk": self.kwargs["pk"]})
+
+
+class DisposalUpdateView(UpdateView):
+    model = DisposalDetails
+    template_name = "jobs/disposal_form.html"
+    fields = ["dump_site", "fee", "notes"]
+
+    def get_success_url(self):
+        return reverse_lazy("job_detail", kwargs={"pk": self.object.job.pk})
+
+
+class DisposalDeleteView(DeleteView):
+    model = DisposalDetails
+    template_name = "jobs/disposal_confirm_delete.html"
+
+    def get_success_url(self):
+        return reverse_lazy("job_detail", kwargs={"pk": self.object.job.pk})

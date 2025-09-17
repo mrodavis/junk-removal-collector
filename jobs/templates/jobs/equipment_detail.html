@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ object.type }} ({{ object.size }})</h1>
+<p>Available: {{ object.availability }}</p>
+<p>Used in Jobs:</p>
+<ul>
+  {% for job in object.jobs.all %}
+    <li>{{ job.description }}</li>
+  {% empty %}
+    <li>No jobs assigned</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'equipment_update' object.pk %}">Edit</a> |
+<a href="{% url 'equipment_delete' object.pk %}">Delete</a>
+{% endblock %}
