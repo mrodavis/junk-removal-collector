@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('address', models.CharField(max_length=255)),
                 ('date', models.DateField()),
                 ('status', models.CharField(choices=[('pending', 'Pending'), ('in_progress', 'In Progress'), ('completed', 'Completed')], default='pending', max_length=20)),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='jobs', to='jobs.customer')),
+                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='jobs', to='jobs_main_app.customer')),
             ],
         ),
         migrations.CreateModel(
@@ -39,7 +39,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=100)),
                 ('truck_type', models.CharField(max_length=50)),
                 ('availability', models.BooleanField(default=True)),
-                ('jobs', models.ManyToManyField(blank=True, related_name='haulers', to='jobs.job')),
+                ('jobs', models.ManyToManyField(blank=True, related_name='haulers', to='jobs_main_app.job')),
             ],
         ),
         migrations.CreateModel(
@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
                 ('type', models.CharField(max_length=50)),
                 ('size', models.CharField(max_length=50)),
                 ('availability', models.BooleanField(default=True)),
-                ('jobs', models.ManyToManyField(blank=True, related_name='equipment', to='jobs.job')),
+                ('jobs', models.ManyToManyField(blank=True, related_name='equipment', to='jobs_main_app.job')),
             ],
         ),
         migrations.CreateModel(
@@ -59,7 +59,7 @@ class Migration(migrations.Migration):
                 ('dump_site', models.CharField(max_length=100)),
                 ('fee', models.DecimalField(decimal_places=2, max_digits=8)),
                 ('notes', models.TextField(blank=True, null=True)),
-                ('job', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='disposal_details', to='jobs.job')),
+                ('job', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='disposal_details', to='jobs_main_app.job')),
             ],
         ),
     ]

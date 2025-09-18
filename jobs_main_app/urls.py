@@ -27,4 +27,5 @@ urlpatterns = [
     path("disposals/<int:pk>/delete/", views.DisposalDeleteView.as_view(), name="disposal_delete"),
 
     path("accounts/signup/", SignUpView.as_view(), name="signup"),
+    path("about/", views.about_view, name="about"),
 ]

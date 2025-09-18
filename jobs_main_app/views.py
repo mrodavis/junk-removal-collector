@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.views import generic
 from django.urls import reverse_lazy
+from django.shortcuts import render
 from .models import Job, Hauler, Equipment, DisposalDetails
 
 class SignUpView(generic.CreateView):
@@ -106,3 +107,6 @@ class DisposalDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse_lazy("job_detail", kwargs={"pk": self.object.job.pk})
+    
+def about_view(request):
+    return render(request, "about.html")

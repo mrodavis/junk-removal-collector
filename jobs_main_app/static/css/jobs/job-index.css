@@ -1,0 +1,72 @@
+/* Container for the cards */
+.card-container {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Each job card */
+.card {
+  width: 275px;
+  margin: 10px;
+  border: var(--borders);
+  box-shadow: var(--card-box-shadow);
+  background-color: #fff;
+  border-radius: var(--card-border-radius);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+/* Inner card content */
+.card-content {
+  padding: 10px;
+  width: 100%;
+}
+
+/* Job title */
+.card h2 {
+  margin: 10px 0;
+  font-size: var(--font-xl);
+}
+
+/* Job details (address, status, etc.) */
+.card p {
+  margin: 5px 0;
+  font-size: var(--font-reg);
+  color: var(--text-color);
+}
+
+/* Links inside job cards */
+.card a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* Status tag styles */
+.status {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: var(--font-sm);
+  font-weight: bold;
+}
+
+.status.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status.in-progress {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.status.completed {
+  background-color: #d4edda;
+  color: #155724;
+}
