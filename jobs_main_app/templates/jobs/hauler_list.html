@@ -2,11 +2,18 @@
 
 {% block content %}
 <h1>All Haulers</h1>
+
+<a href="{% url 'hauler_create' %}">Add New Hauler</a>
+
 <ul>
   {% for hauler in haulers %}
     <li>
-      <a href="{% url 'hauler_detail' hauler.pk %}">{{ hauler.name }}</a>
+      <a href="{% url 'hauler_detail' hauler.pk %}">{{ hauler.name }}</a> |
+      <a href="{% url 'hauler_update' hauler.pk %}">Edit</a> |
+      <a href="{% url 'hauler_delete' hauler.pk %}">Delete</a>
     </li>
+  {% empty %}
+    <li>No haulers found.</li>
   {% endfor %}
 </ul>
 {% endblock %}

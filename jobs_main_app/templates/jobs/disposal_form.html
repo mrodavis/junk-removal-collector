@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock %}
 
 {% block content %}
-<h1>Disposal Details</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Save</button>
-</form>
+<div class="form-card">
+  <h1>Disposal Details</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Save</button>
+  </form>
+</div>
 {% endblock %}

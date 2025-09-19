@@ -13,6 +13,9 @@ urlpatterns = [
     # Haulers
     path("haulers/", views.HaulerListView.as_view(), name="hauler_list"),
     path("haulers/<int:pk>/", views.HaulerDetailView.as_view(), name="hauler_detail"),
+    path("haulers/create/", views.HaulerCreateView.as_view(), name="hauler_create"),
+    path("haulers/<int:pk>/update/", views.HaulerUpdateView.as_view(), name="hauler_update"),
+    path("haulers/<int:pk>/delete/", views.HaulerDeleteView.as_view(), name="hauler_delete"),
 
     # Equipment
     path("equipment/", views.EquipmentListView.as_view(), name="equipment_list"),

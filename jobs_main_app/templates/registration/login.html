@@ -1,11 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
 
 {% block content %}
-<h1>Login</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn btn-primary">Login</button>
-</form>
-<p>Don’t have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+<main>
+  <!-- Logo -->
+  <section class="logo-container">
+    <img src="{% static 'images/logo.png' %}" alt="Junk Collector Logo">
+  </section>
+
+  <!-- Login form -->
+  <section class="login">
+    <h1>Login</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <p>Don’t have an account?
+      <a href="{% url 'signup' %}">Sign up</a>
+    </p>
+  </section>
+</main>
 {% endblock %}

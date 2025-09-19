@@ -30,11 +30,12 @@ class Hauler(models.Model):
     name = models.CharField(max_length=100)
     truck_type = models.CharField(max_length=50)
     availability = models.BooleanField(default=True)
+    email = models.EmailField(blank=True, null=True)
+    phone = models.CharField(max_length=20, blank=True, null=True)
     jobs = models.ManyToManyField(Job, related_name="haulers", blank=True)
 
     def __str__(self):
         return self.name
-
 
 class Equipment(models.Model):
     type = models.CharField(max_length=50)

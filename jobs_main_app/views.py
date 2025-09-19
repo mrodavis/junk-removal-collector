@@ -48,6 +48,24 @@ class HaulerDetailView(DetailView):
     model = Hauler
     template_name = "jobs/hauler_detail.html"
 
+class HaulerCreateView(CreateView):
+    model = Hauler
+    template_name = "jobs/hauler_form.html"
+    fields = ["name", "phone", "email"]  # adjust fields to match your model
+    success_url = reverse_lazy("hauler_list")
+
+class HaulerUpdateView(UpdateView):
+    model = Hauler
+    template_name = "jobs/hauler_form.html"
+    fields = ["name", "phone", "email"]  # adjust fields to match your model
+    success_url = reverse_lazy("hauler_list")
+
+class HaulerDeleteView(DeleteView):
+    model = Hauler
+    template_name = "jobs/hauler_confirm_delete.html"
+    success_url = reverse_lazy("hauler_list")
+
+
 
 # EQUIPMENT VIEWS
 class EquipmentListView(ListView):

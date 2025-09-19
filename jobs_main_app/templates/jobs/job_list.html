@@ -6,6 +6,8 @@
 
 <h1>All Jobs</h1>
 
+<a href="{% url 'job_create' %}">Add Job</a>
+
 <div class="card-container">
   {% for job in jobs %}
     <div class="card">

@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="form-card">
-  <h1>Job</h1>
+  <h1>{{ view.object.pk|default:"Add New Hauler" }}</h1>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
