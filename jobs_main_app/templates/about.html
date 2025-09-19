@@ -1,9 +1,43 @@
-{% extends 'base.html' %} 
+
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}About - Junk Removal Collector{% endblock %}
+
 {% block content %}
-<h1>About the Junk Removal Collector</h1>
-<hr />
-<p class="page-content">
-  I like long romantic walks down the produce aisle. Also, I am currently job
-  seeking!
-</p>
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+
+<div class="about-container">
+  <h2>About Junk Removal Collector</h2>
+
+  <p>
+    <strong>Junk Removal Collector</strong> is a management tool designed to help junk removal 
+    businesses stay organized and efficient. With this app, business owners can 
+    create and manage jobs, assign haulers, and keep track of resources like 
+    trucks and equipment.
+  </p>
+
+  <p>
+    Instead of relying on paper notes or scattered spreadsheets, 
+    Junk Removal Collector brings everything into one simple dashboard.
+  </p>
+
+  <h3>Who It’s For</h3>
+  <ul>
+    <li><strong>Business Owners & Managers</strong> – oversee daily operations, schedule jobs, and monitor team performance.</li>
+    <li><strong>Haulers & Crew Members</strong> – view assigned jobs, update progress, and stay on top of tasks.</li>
+  </ul>
+
+  <h3>Why It Matters</h3>
+  <p>
+    Running a junk removal company means juggling jobs, trucks, and teams. 
+    Junk Removal Collector makes that easier by providing a clear way to manage 
+    all the moving parts of the business.
+  </p>
+
+  <p class="mission">
+    Our mission is simple: Make junk removal operations smoother, faster, and smarter.
+  </p>
+</div>
 {% endblock %}

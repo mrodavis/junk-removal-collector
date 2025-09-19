@@ -41,28 +41,28 @@ class JobDeleteView(DeleteView):
 # HAULER VIEWS
 class HaulerListView(ListView):
     model = Hauler
-    template_name = "jobs/hauler_list.html"
+    template_name = "haulers/hauler_list.html"
     context_object_name = "haulers"
 
 class HaulerDetailView(DetailView):
     model = Hauler
-    template_name = "jobs/hauler_detail.html"
+    template_name = "haulers/hauler_detail.html"
 
 class HaulerCreateView(CreateView):
     model = Hauler
-    template_name = "jobs/hauler_form.html"
+    template_name = "haulers/hauler_form.html"
     fields = ["name", "phone", "email"]  # adjust fields to match your model
     success_url = reverse_lazy("hauler_list")
 
 class HaulerUpdateView(UpdateView):
     model = Hauler
-    template_name = "jobs/hauler_form.html"
+    template_name = "haulers/hauler_form.html"
     fields = ["name", "phone", "email"]  # adjust fields to match your model
     success_url = reverse_lazy("hauler_list")
 
 class HaulerDeleteView(DeleteView):
     model = Hauler
-    template_name = "jobs/hauler_confirm_delete.html"
+    template_name = "haulers/hauler_confirm_delete.html"
     success_url = reverse_lazy("hauler_list")
 
 
@@ -70,28 +70,28 @@ class HaulerDeleteView(DeleteView):
 # EQUIPMENT VIEWS
 class EquipmentListView(ListView):
     model = Equipment
-    template_name = "jobs/equipment_list.html"
+    template_name = "equipment/equipment_list.html"
     context_object_name = "equipment"
 
 class EquipmentDetailView(DetailView):
     model = Equipment
-    template_name = "jobs/equipment_detail.html"
+    template_name = "equipment/equipment_detail.html"
 
 class EquipmentCreateView(CreateView):
     model = Equipment
-    template_name = "jobs/equipment_form.html"
+    template_name = "equipment/equipment_form.html"
     fields = ["type", "size", "availability", "jobs"]
     success_url = reverse_lazy("equipment_list")
 
 class EquipmentUpdateView(UpdateView):
     model = Equipment
-    template_name = "jobs/equipment_form.html"
+    template_name = "equipment/equipment_form.html"
     fields = ["type", "size", "availability", "jobs"]
     success_url = reverse_lazy("equipment_list")
 
 class EquipmentDeleteView(DeleteView):
     model = Equipment
-    template_name = "jobs/equipment_confirm_delete.html"
+    template_name = "equipment/equipment_confirm_delete.html"
     success_url = reverse_lazy("equipment_list")
 
 

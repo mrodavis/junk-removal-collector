@@ -1,0 +1,58 @@
+/* Container */
+.about-container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 30px;
+  line-height: 1.9;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1.35rem;   /* ~21px body text */
+  color: #0d0d0d;       /* stronger contrast */
+}
+
+/* Headings */
+.about-container h2 {
+  font-size: 2.6rem;   /* ~42px */
+  margin-bottom: 0.8em;
+  color: #000;
+  border-bottom: 3px solid #ccc;
+  padding-bottom: 0.4em;
+  font-weight: 700;
+}
+
+.about-container h3 {
+  font-size: 1.8rem;   /* ~29px */
+  margin-top: 2em;
+  margin-bottom: 0.8em;
+  color: #004aad;
+  font-weight: 700;
+}
+
+/* Paragraphs */
+.about-container p {
+  margin-bottom: 1.6em;
+  font-size: 1.35rem; /* keep body consistent */
+  color: #111;
+}
+
+/* Lists */
+.about-container ul {
+  margin: 0 0 1.5em 1.8em;
+  padding: 0;
+}
+
+.about-container li {
+  margin-bottom: 0.9em;
+  font-size: 1.3rem;
+}
+
+/* Mission Highlight */
+.mission {
+  background: #eef5ff;
+  border-left: 6px solid #004aad;
+  padding: 22px 28px;
+  font-style: italic;
+  margin-top: 3em;
+  font-size: 1.45rem;  /* slightly bigger for emphasis (~23px) */
+  font-weight: 500;
+  color: #0d0d0d;
+}

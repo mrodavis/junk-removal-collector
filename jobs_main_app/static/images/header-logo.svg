@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="38" viewBox="0 0 220 36">
+  <!-- Cartoon dumpster mascot -->
+  <g transform="translate(5,-4) scale(0.8)">
+    <!-- Dumpster body -->
+    <rect x="0" y="10" width="35" height="20" fill="#4caf50" stroke="#2e7d32" stroke-width="2" rx="5"/>
+    <!-- Wheels -->
+    <circle cx="8" cy="30" r="4" fill="#333"/>
+    <circle cx="27" cy="30" r="4" fill="#333"/>
+    <!-- Junk sticking out -->
+    <rect x="5" y="0" width="8" height="8" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+    <rect x="18" y="-2" width="10" height="10" fill="#90a4ae" stroke="#455a64" stroke-width="1"/>
+    <!-- Face -->
+    <circle cx="12" cy="18" r="3" fill="#fff"/>
+    <circle cx="23" cy="18" r="3" fill="#fff"/>
+    <circle cx="12" cy="18" r="1.5" fill="#000"/>
+    <circle cx="23" cy="18" r="1.5" fill="#000"/>
+    <path d="M11 24 Q17 28 24 24" stroke="#000" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Text lifted higher -->
+  <text x="55" y="18" font-family="Arial Black, sans-serif" font-size="20" fill="#000">
+    junk collector
+  </text>
+</svg>
