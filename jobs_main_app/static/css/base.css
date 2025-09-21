@@ -103,9 +103,9 @@ nav li {
 }
 
 .header-logo-container img {
-  position: relative;
-  top: -4px;   /* tweak this until it’s visually centered in the pill */
-  height: 45px; /* optional: force consistent size */
+  max-height: 50px;  /* adjust to fit your navbar */
+  width: auto;       /* keeps proportions */
+  object-fit: contain;
 }
 
 .page-header {

@@ -22,6 +22,7 @@
         <ul>
           {% if user.is_authenticated %}
             <li><a href="{% url 'job_list' %}">Jobs</a></li>
+            <li><a href="{% url 'customer_list' %}">Customers</a></li>
             <li><a href="{% url 'hauler_list' %}">Haulers</a></li>
             <li><a href="{% url 'equipment_list' %}">Equipment</a></li>
 

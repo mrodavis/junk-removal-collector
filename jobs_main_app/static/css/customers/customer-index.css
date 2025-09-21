@@ -1,0 +1,73 @@
+/* Customer card container */
+.card-container {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 275px;
+  margin: 10px;
+  border: var(--borders);
+  box-shadow: var(--card-box-shadow);
+  border-radius: var(--card-border-radius);
+  background: white;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-content {
+  padding: 12px;
+  width: 100%;
+}
+
+/* Customer name */
+.card h2 {
+  margin: 10px 0;
+  font-size: var(--font-xl);
+  color: var(--text-dark);
+}
+
+/* Contact info */
+.card p {
+  margin: 6px 0;
+  font-size: var(--font-reg);
+  color: var(--text-light);
+}
+
+/* Status badge */
+.status-badge {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-top: 6px;
+}
+
+/* States */
+.status-active {
+  background-color: #4CAF50; /* green */
+  color: white;
+}
+
+.status-none {
+  background-color: #ccc; /* gray */
+  color: #333;
+}
+
+/* Action links */
+.card a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/customers/customer-detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+  <h1>{{ object.name }}</h1>
+  <p><strong>Email:</strong> {{ object.email }}</p>
+  <p><strong>Phone:</strong> {{ object.phone }}</p>
+
+  {% if object.jobs.all %}
+    <span class="status-badge status-active">
+      Active Jobs ({{ object.jobs.count }})
+    </span>
+  {% else %}
+    <span class="status-badge status-none">No Jobs</span>
+  {% endif %}
+
+  <h2>Jobs</h2>
+  <ul>
+    {% for job in object.jobs.all %}
+      <li>
+        <strong>{{ job.description }}</strong> — {{ job.status }}
+        <a href="{% url 'job_detail' job.pk %}">View</a> |
+        <a href="{% url 'job_update' job.pk %}">Edit</a> |
+        <a href="{% url 'job_delete' job.pk %}">Delete</a>
+      </li>
+    {% empty %}
+      <li>No jobs assigned to this customer yet.</li>
+    {% endfor %}
+  </ul>
+
+  <div class="detail-actions">
+    <a href="{% url 'job_create' %}?customer={{ object.pk }}">+ Add Job for {{ object.name }}</a> |
+    <a href="{% url 'customer_update' object.pk %}">Edit Customer</a> |
+    <a href="{% url 'customer_delete' object.pk %}">Delete Customer</a> |
+    <a href="{% url 'customer_list' %}">← Back to All Customers</a>
+  </div>
+</div>
+{% endblock %}

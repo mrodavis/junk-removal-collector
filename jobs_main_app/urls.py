@@ -1,6 +1,10 @@
 from django.urls import path
 from . import views 
 from .views import SignUpView
+from .views import (
+    CustomerListView, CustomerDetailView,
+    CustomerCreateView, CustomerUpdateView, CustomerDeleteView
+)
 
 urlpatterns = [
     # Jobs
@@ -23,6 +27,13 @@ urlpatterns = [
     path("equipment/create/", views.EquipmentCreateView.as_view(), name="equipment_create"),
     path("equipment/<int:pk>/update/", views.EquipmentUpdateView.as_view(), name="equipment_update"),
     path("equipment/<int:pk>/delete/", views.EquipmentDeleteView.as_view(), name="equipment_delete"),
+
+    # Customers
+    path("customers/", CustomerListView.as_view(), name="customer_list"),
+    path("customers/<int:pk>/", CustomerDetailView.as_view(), name="customer_detail"),
+    path("customers/create/", CustomerCreateView.as_view(), name="customer_create"),
+    path("customers/<int:pk>/update/", CustomerUpdateView.as_view(), name="customer_update"),
+    path("customers/<int:pk>/delete/", CustomerDeleteView.as_view(), name="customer_delete"),
 
     # Disposal Details (linked to Job)
     path("jobs/<int:pk>/disposal/add/", views.DisposalCreateView.as_view(), name="disposal_create"),
