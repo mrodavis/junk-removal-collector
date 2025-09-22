@@ -4,6 +4,7 @@ class Customer(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=20)
+    address = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -21,6 +22,7 @@ class Job(models.Model):
     address = models.CharField(max_length=255)
     date = models.DateField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pending")
+    haulers = models.ManyToManyField("Hauler", related_name="jobs", blank=True)
 
     def __str__(self):
         return f"{self.description} ({self.status})"
@@ -32,7 +34,7 @@ class Hauler(models.Model):
     availability = models.BooleanField(default=True)
     email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
-    jobs = models.ManyToManyField(Job, related_name="haulers", blank=True)
+    
 
     def __str__(self):
         return self.name

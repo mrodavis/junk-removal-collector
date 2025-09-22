@@ -1,7 +1,34 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h1>{{ object.name }}</h1>
-<p><strong>Truck Type:</strong> {{ object.truck_type }}</p>
-<p><strong>Available:</strong> {{ object.availability }}</p>
+<link rel="stylesheet" href="{% static 'css/haulers/hauler-detail.css' %}">
+
+<div class="hauler-info">
+  <h1>{{ object.name }}</h1>
+  <p><strong>Truck Type:</strong> {{ object.truck_type }}</p>
+  <p><strong>Available:</strong> {{ object.availability }}</p>
+</div>
+
+<h2>Assigned Jobs</h2>
+<div class="card-container">
+  {% for job in object.jobs.all %}
+    <div class="card">
+      <h3>{{ job.description }}</h3>
+      <p><strong>Customer:</strong> {{ job.customer.name }}</p>
+      <p><strong>Address:</strong> {{ job.address }}</p>
+      <p><strong>Date:</strong> {{ job.date|date:"M d, Y" }}</p>
+      <p>
+        <span class="status {{ job.status|slugify }}">{{ job.status }}</span>
+      </p>
+      <p>
+        <a href="{% url 'job_detail' job.id %}">View</a> |
+        <a href="{% url 'job_update' job.id %}">Edit</a> |
+        <a href="{% url 'job_delete' job.id %}">Delete</a>
+      </p>
+    </div>
+  {% empty %}
+    <p>No jobs assigned to this hauler yet.</p>
+  {% endfor %}
+</div>
 {% endblock %}

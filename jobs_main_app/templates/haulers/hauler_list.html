@@ -1,19 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/haulers/hauler-index.css' %}" />
+{% endblock %}
 
 {% block content %}
 <h1>All Haulers</h1>
+<a href="{% url 'hauler_create' %}" class="btn">+ Add New Hauler</a>
 
-<a href="{% url 'hauler_create' %}">Add New Hauler</a>
-
-<ul>
+<div class="card-container">
   {% for hauler in haulers %}
-    <li>
-      <a href="{% url 'hauler_detail' hauler.pk %}">{{ hauler.name }}</a> |
+  <div class="card">
+    <div class="card-content">
+      <h2>{{ hauler.name }}</h2>
+      <p><strong>Truck Type:</strong> {{ hauler.truck_type }}</p>
+      <p><strong>Phone:</strong> {{ hauler.phone }}</p>
+      <p><strong>Email:</strong> {{ hauler.email }}</p>
+      <p>
+        <strong>Availability:</strong>
+        {% if hauler.availability %}
+          <span class="status-badge status-active">Available</span>
+        {% else %}
+          <span class="status-badge status-none">Unavailable</span>
+        {% endif %}
+      </p>
+    </div>
+
+    <div class="card-actions">
+      <a href="{% url 'hauler_detail' hauler.pk %}">View</a> |
       <a href="{% url 'hauler_update' hauler.pk %}">Edit</a> |
       <a href="{% url 'hauler_delete' hauler.pk %}">Delete</a>
-    </li>
+    </div>
+  </div>
   {% empty %}
-    <li>No haulers found.</li>
+  <p>No haulers yet.</p>
   {% endfor %}
-</ul>
+</div>
 {% endblock %}

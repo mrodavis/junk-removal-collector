@@ -1,16 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/equipment/equipment-detail.css' %}" />
+{% endblock %}
 
 {% block content %}
-<h1>{{ object.type }} ({{ object.size }})</h1>
-<p>Available: {{ object.availability }}</p>
-<p>Used in Jobs:</p>
-<ul>
-  {% for job in object.jobs.all %}
-    <li>{{ job.description }}</li>
-  {% empty %}
-    <li>No jobs assigned</li>
-  {% endfor %}
-</ul>
-<a href="{% url 'equipment_update' object.pk %}">Edit</a> |
-<a href="{% url 'equipment_delete' object.pk %}">Delete</a>
+<div class="card-container">
+  <div class="card">
+    <div class="card-content">
+      <h2>{{ object.type }} ({{ object.size }})</h2>
+      <p>
+        <strong>Availability:</strong>
+        {% if object.availability %}
+          <span class="status-badge status-active">Available</span>
+        {% else %}
+          <span class="status-badge status-none">Unavailable</span>
+        {% endif %}
+      </p>
+    </div>
+
+    <div class="card-actions">
+      <a href="{% url 'equipment_update' object.pk %}">Edit</a> |
+      <a href="{% url 'equipment_delete' object.pk %}">Delete</a>
+    </div>
+  </div>
+</div>
 {% endblock %}

@@ -1,13 +1,37 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/equipment/equipment-index.css' %}" />
+{% endblock %}
 
 {% block content %}
 <h1>All Equipment</h1>
-<ul>
-  {% for item in equipment %}
-    <li>
-      <a href="{% url 'equipment_detail' item.pk %}">{{ item.type }} ({{ item.size }})</a>
-    </li>
+<a href="{% url 'equipment_create' %}" class="btn">+ Add Equipment</a>
+
+<div class="card-container">
+  {% for equipment in equipment %}
+  <div class="card">
+    <div class="card-content">
+      <h2>{{ equipment.type }} ({{ equipment.size }})</h2>
+      <p>
+        <strong>Availability:</strong>
+        {% if equipment.availability %}
+          <span class="status-badge status-active">Available</span>
+        {% else %}
+          <span class="status-badge status-none">Unavailable</span>
+        {% endif %}
+      </p>
+    </div>
+
+    <div class="card-actions">
+      <a href="{% url 'equipment_detail' equipment.pk %}">View</a> |
+      <a href="{% url 'equipment_update' equipment.pk %}">Edit</a> |
+      <a href="{% url 'equipment_delete' equipment.pk %}">Delete</a>
+    </div>
+  </div>
+  {% empty %}
+  <p>No equipment added yet.</p>
   {% endfor %}
-</ul>
-<a href="{% url 'equipment_create' %}">Add New Equipment</a>
+</div>
 {% endblock %}

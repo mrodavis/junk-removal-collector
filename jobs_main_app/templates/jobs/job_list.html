@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
+{% block head %}
 <link rel="stylesheet" href="{% static 'css/jobs/job-index.css' %}">
+{% endblock %}
 
+{% block content %}
 <h1>All Jobs</h1>
 
-<a href="{% url 'job_create' %}">Add Job</a>
+<a href="{% url 'job_create' %}" class="btn">+ Add Job</a>
 
 <div class="card-container">
   {% for job in jobs %}
@@ -14,9 +16,17 @@
       <div class="card-content">
         <h2>{{ job.title }}</h2>
         <p><strong>Customer:</strong> {{ job.customer.name }}</p>
-        <p><strong>Address:</strong> {{ job.customer.address }}</p>
+        <p><strong>Address:</strong> {{ job.address }}</p>
         <p><strong>Date:</strong> {{ job.date|date:"M d, Y" }}</p>
-        <p><strong>Hauler:</strong> {{ job.hauler.name }}</p>
+        <p><strong>Haulers:</strong>
+          {% if job.haulers.all %}
+            {% for hauler in job.haulers.all %}
+              {{ hauler.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          {% else %}
+            No haulers assigned
+          {% endif %}
+        </p>
         
         <!-- Status badge -->
         <p>

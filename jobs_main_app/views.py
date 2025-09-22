@@ -23,13 +23,20 @@ class JobDetailView(DetailView):
 class JobCreateView(CreateView):
     model = Job
     template_name = "jobs/job_form.html"
-    fields = ["customer", "description", "address", "date", "status"]
+    fields = ["customer", "description", "address", "date", "status", "haulers"]
     success_url = reverse_lazy("job_list")
+
+    def get_initial(self):
+        initial = super().get_initial()
+        customer_id = self.request.GET.get("customer")
+        if customer_id:
+            initial["customer"] = customer_id
+        return initial
 
 class JobUpdateView(UpdateView):
     model = Job
     template_name = "jobs/job_form.html"
-    fields = ["customer", "description", "address", "date", "status"]
+    fields = ["customer", "description", "address", "date", "status", "haulers"]
     success_url = reverse_lazy("job_list")
 
 class JobDeleteView(DeleteView):

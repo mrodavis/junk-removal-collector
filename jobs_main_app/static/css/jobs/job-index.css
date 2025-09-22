@@ -70,3 +70,22 @@
   background-color: #d4edda;
   color: #155724;
 }
+
+.btn-add {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 10px 0;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #4b0082;
+  background-color: #f9f9ff;
+  border: 1px solid #8a2be2;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-add:hover {
+  background-color: #8a2be2;
+  color: white;
+}
