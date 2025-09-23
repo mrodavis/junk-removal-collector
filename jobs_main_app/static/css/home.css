@@ -88,3 +88,9 @@ main > section {
   text-align: center;            /* centers the "Don’t have an account?" text */
 }
 
+.login-mascot {
+  width: 400px;   /* or whatever size works best */
+  height: auto;   /* keeps proportions */
+  display: block;
+  margin: 0 auto 20px; /* center with spacing */
+}
