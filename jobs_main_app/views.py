@@ -40,6 +40,15 @@ class JobCreateView(LoginRequiredMixin, CreateView):
     fields = ["customer", "description", "address", "date", "status", "haulers"]
     success_url = reverse_lazy("job_list")
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        user = self.request.user
+
+        form.fields["customer"].queryset = Customer.objects.filter(owner=user)
+        form.fields["haulers"].queryset = Hauler.objects.filter(owner=user)
+        # form.fields["equipment"].queryset = Equipment.objects.filter(owner=user)
+        return form
+
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
@@ -58,6 +67,15 @@ class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     fields = ["customer", "description", "address", "date", "status", "haulers"]
     success_url = reverse_lazy("job_list")
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        user = self.request.user
+
+        form.fields["customer"].queryset = Customer.objects.filter(owner=user)
+        form.fields["haulers"].queryset = Hauler.objects.filter(owner=user)
+        # form.fields["equipment"].queryset = Equipment.objects.filter(owner=user)
+        return form
+    
     def test_func(self):
         return self.get_object().owner == self.request.user
 
@@ -147,6 +165,12 @@ class EquipmentCreateView(LoginRequiredMixin, CreateView):
     fields = ["type", "size", "availability", "jobs"]
     success_url = reverse_lazy("equipment_list")
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        user = self.request.user
+        form.fields["jobs"].queryset = Job.objects.filter(owner=user)
+        return form
+
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
@@ -157,6 +181,12 @@ class EquipmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = "equipment/equipment_form.html"
     fields = ["type", "size", "availability", "jobs"]
     success_url = reverse_lazy("equipment_list")
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        user = self.request.user
+        form.fields["jobs"].queryset = Job.objects.filter(owner=user)
+        return form
 
     def test_func(self):
         return self.get_object().owner == self.request.user

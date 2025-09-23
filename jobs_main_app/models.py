@@ -26,6 +26,7 @@ class Job(models.Model):
     date = models.DateField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pending")
     haulers = models.ManyToManyField("Hauler", related_name="jobs", blank=True)
+    
 
     def __str__(self):
         return f"{self.description} ({self.status})"
