@@ -1,24 +1,61 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h1>{{ object.description }}</h1>
-<p><strong>Address:</strong> {{ object.address }}</p>
-<p><strong>Date:</strong> {{ object.date }}</p>
-<p><strong>Status:</strong> {{ object.status }}</p>
-<p><strong>Customer:</strong> {{ object.customer.name }}</p>
+<link rel="stylesheet" href="{% static 'css/jobs/job-detail.css' %}">
+<link rel="stylesheet" href="{% static 'css/jobs/job-index.css' %}"> 
+{# reuse status badge styles #}
 
-<a href="{% url 'job_update' object.pk %}">Edit</a> |
-<a href="{% url 'job_delete' object.pk %}">Delete</a>
+<div class="job-detail-container">
+  <h1>{{ job.description }}</h1>
 
-<h2>Disposal Details</h2>
-{% if object.disposal_details %}
-  <p>Dump Site: {{ object.disposal_details.dump_site }}</p>
-  <p>Fee: ${{ object.disposal_details.fee }}</p>
-  <p>Notes: {{ object.disposal_details.notes }}</p>
-  <a href="{% url 'disposal_update' object.disposal_details.pk %}">Edit</a> |
-  <a href="{% url 'disposal_delete' object.disposal_details.pk %}">Delete</a>
-{% else %}
-  <p>No disposal details yet.</p>
-  <a href="{% url 'disposal_create' object.pk %}">Add Disposal Details</a>
-{% endif %}
+  <div class="job-info">
+    <p><strong>Address:</strong> {{ job.address }}</p>
+    <p><strong>Date:</strong> {{ job.date|date:"M d, Y" }}</p>
+
+    <!-- Styled status badge -->
+    <p>
+      <strong>Status:</strong> 
+      <span class="status {{ job.status|lower|slugify }}">
+        {{ job.status }}
+      </span>
+    </p>
+
+    <p><strong>Customer:</strong> {{ job.customer.name }}</p>
+
+    <!-- Haulers -->
+    <p><strong>Haulers:</strong>
+      {% if job.haulers.all %}
+        {% for hauler in job.haulers.all %}
+          {{ hauler.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      {% else %}
+        No haulers assigned
+      {% endif %}
+    </p>
+  </div>
+
+  <!-- Actions -->
+  <div class="job-actions">
+    <a href="{% url 'job_update' job.id %}">Edit</a> |
+    <a href="{% url 'job_delete' job.id %}">Delete</a>
+  </div>
+
+  <!-- Disposal Details -->
+  <div class="disposal-section">
+    <h2>Disposal Details</h2>
+    {% if job.disposal_details %}
+      <div class="disposal-card">
+        <p><strong>Dump Site:</strong> {{ job.disposal_details.dump_site }}</p>
+        <p><strong>Fee:</strong> ${{ job.disposal_details.fee }}</p>
+        {% if job.disposal_details.notes %}
+          <p><strong>Notes:</strong> {{ job.disposal_details.notes }}</p>
+        {% endif %}
+      </div>
+    {% else %}
+      <p>No disposal details yet.</p>
+      <a href="{% url 'disposal_create' job.id %}">+ Add Disposal Details</a>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}

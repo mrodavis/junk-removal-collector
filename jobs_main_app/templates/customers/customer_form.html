@@ -1,9 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<h1>{{ view.object.pk|yesno:"Edit Customer,Add Customer" }}</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Save</button>
-</form>
+<link rel="stylesheet" href="{% static 'css/customers/customer-form.css' %}">
+
+<div class="form-container">
+  <h1>Add Customer</h1>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="id_name">Name:</label>
+      {{ form.name }}
+    </div>
+    <div class="form-group">
+      <label for="id_email">Email:</label>
+      {{ form.email }}
+    </div>
+    <div class="form-group">
+      <label for="id_phone">Phone:</label>
+      {{ form.phone }}
+    </div>
+    <div class="form-group">
+      <label for="id_address">Address:</label>
+      {{ form.address }}
+    </div>
+
+    <button type="submit" class="btn submit">Save</button>
+  </form>
+</div>
 {% endblock %}

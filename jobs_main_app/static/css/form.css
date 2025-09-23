@@ -82,19 +82,23 @@ td > textarea {
   resize: vertical;
 }
 
-.form-card .btn {
-  width: 100%;
-  padding: 12px;
-  background: var(--primary-color);
-  color: #fff;
-  border: none;
+.form-card .btn,
+.form-container .btn {
+  display: block;
+  margin: 15px auto 0 auto;
+  padding: 10px 24px;
+  border: 2px solid var(--submit);   /* green border */
   border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
+  background: #fff;                  /* white background */
+  color: var(--submit);              /* green text */
+  font-size: var(--font-l);
   font-weight: 600;
-  transition: background 0.2s ease;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.form-card .btn:hover {
-  background: var(--primary-color-dark);
+.form-card .btn:hover,
+.form-container .btn:hover {
+  background: var(--submit);         /* fill green on hover */
+  color: #fff;                       /* white text on hover */
 }

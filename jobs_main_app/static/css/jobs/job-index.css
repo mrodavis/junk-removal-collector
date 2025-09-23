@@ -61,7 +61,7 @@
   color: #856404;
 }
 
-.status.in-progress {
+.status.in-progress, .status.in_progress {
   background-color: #cce5ff;
   color: #004085;
 }
