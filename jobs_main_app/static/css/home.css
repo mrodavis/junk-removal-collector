@@ -89,8 +89,17 @@ main > section {
 }
 
 .login-mascot {
-  width: 400px;   /* or whatever size works best */
-  height: auto;   /* keeps proportions */
+  max-width: 400px;   /* mascot won’t exceed this width */
+  width: 100%;        /* scales down with container */
+  height: auto;       /* preserves aspect ratio */
   display: block;
-  margin: 0 auto 20px; /* center with spacing */
+  margin: 0 auto 20px;
+}
+
+/* On mobile, shrink mascot even further */
+@media (max-width: 768px) {
+  .login-mascot {
+    max-width: 200px; /* smaller for phones */
+    margin-bottom: 16px;
+  }
 }
