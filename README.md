@@ -1,6 +1,6 @@
 # Junk Collector 🚛
 
-![App Screenshot](jobs_main_app/static/images/mascot-truck-login.png)
+![App Screenshot](https://i.imgur.com/KGqkswX.png)
 <!-- Replace with actual screenshot path -->
 <!-- Or use logo -->
 <!-- ![Logo](static/images/mascot-truck.svg) -->
